@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROLU — Play. Create. Connect.</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #10121b;
+  color: white;
+}
+header {
+  height: 70px;
+  background: #191c29;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  border-bottom: 1px solid #303448;
+}
+.logo { font-size: 29px; font-weight: 900; color: #a78bfa; }
+.bricks {
+  background: #302849;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: #e3d5ff;
+  font-weight: bold;
+}
+nav {
+  display: flex;
+  gap: 22px;
+  padding: 16px 5%;
+  background: #191c29;
+}
+nav button {
+  color: #c5c8d8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+nav button:hover { color: white; }
+main { max-width: 1200px; margin: auto; padding: 30px 5%; }
+.hero {
+  padding: 55px 35px;
+  border-radius: 22px;
+  background: linear-gradient(120deg,#50368d,#272e59,#1c5369);
+  margin-bottom: 35px;
+}
+.hero h1 { font-size: clamp(35px,6vw,58px); margin: 0 0 12px; }
+.hero p { color: #e3e3fa; font-size: 17px; }
+.primary {
+  background: #a78bfa;
+  color: #171326;
+  border: 0;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+h2 { margin-top: 32px; }
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 18px;
+}
+.game {
+  background: #1c2030;
+  border: 1px solid #303448;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.cover {
+  height: 140px;
+  display: grid;
+  place-items: center;
+  font-size: 52px;
+}
+.game-info { padding: 16px; }
+.game-info p { color: #aeb3c7; font-size: 13px; }
+.play {
+  background: #333b56;
+  border: 0;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+footer {
+  text-align: center;
+  padding: 35px;
+  color: #858ba2;
+}
+#message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #302849;
+  padding: 14px 22px;
+  border-radius: 12px;
+  display: none;
+}
+@media(max-width:600px) {
+  header { padding: 0 16px; }
+  nav { gap: 15px; overflow-x: auto; padding: 15px; }
+  main { padding: 20px 16px; }
+  .hero { padding: 35px 22px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ROLU</div>
+  <div class="bricks">◆ 0 B$</div>
+</header>
+
+<nav>
+  <button onclick="home()">Home</button>
+  <button onclick="notify('Avatar creator coming soon!')">Avatars</button>
+  <button onclick="notify('Game creation coming soon!')">Create</button>
+  <button onclick="notify('Your profile is coming soon!')">Profile</button>
+</nav>
+
+<main id="content">
+  <section class="hero">
+    <h1>YOUR WORLD.<br>YOUR GAMES.</h1>
+    <p>Discover games, meet players and create your own world.</p>
+    <button class="primary" onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">
+      Explore games →
+    </button>
+  </section>
+
+  <h2 id="discover">🔥 Discover Games</h2>
+  <p style="color:#aeb3c7">Find something new to play.</p>
+
+  <section class="games">
+    <article class="game">
+      <div class="cover" style="background:linear-gradient(135deg,#e9a45b,#d45b74)">🏝️</div>
+      <div class="game-info">
+        <h3>Island Adventure</h3>
+        <p>Explore a mysterious island.</p>
+        <button class="play" onclick="notify('Island Adventure is a demo game card!')">Play</button>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="cover" style="background:linear-gradient(135deg,#63b8c9,#5559a9)">🏙️</div>
+      <div class="game-info">
+        <h3>City Life</h3>
+        <p>Build your life in the city.</p>
+        <button class="play" onclick="notify('City Life is a demo game card!')">Play</button>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="cover" style="background:linear-gradient(135deg,#c57ed5,#6c4ca3)">🏡</div>
+      <div class="game-info">
+        <h3>Dream House</h3>
+        <p>Imagine your perfect home.</p>
+        <button class="play" onclick="notify('Dream House is a demo game card!')">Play</button>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="cover" style="background:linear-gradient(135deg,#e7bc61,#d56d45)">⚔️</div>
+      <div class="game-info">
+        <h3>Quest World</h3>
+        <p>Go on an epic adventure.</p>
+        <button class="play" onclick="notify('Quest World is a demo game card!')">Play</button>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer>© 2026 ROLU · Play. Create. Connect.</footer>
+<div id="message"></div>
+
+<script>
+function notify(text) {
+  const box = document.getElementById('message');
+  box.textContent = text;
+  box.style.display = 'block';
+  clearTimeout(window.noticeTimer);
+  window.noticeTimer = setTimeout(() => {
+    box.style.display = 'none';
+  }, 2500);
+}
+function home() {
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
