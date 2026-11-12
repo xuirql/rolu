@@ -117,7 +117,7 @@ footer {
 
 <header>
   <div class="logo">ROLU</div>
-  <div class="bricks">◆ 0 B$</div>
+  <div class="bricks">0 B$</div>
 </header>
 
 <nav>
@@ -125,6 +125,8 @@ footer {
   <button onclick="notify('Avatar creator coming soon!')">Avatars</button>
   <button onclick="notify('Game creation coming soon!')">Create</button>
   <button onclick="notify('Your profile is coming soon!')">Profile</button>
+  <button onclick="showLogin()">Log In</button>
+  <button onclick="showSignup()">Sign Up</button>
 </nav>
 
 <main id="content">
@@ -195,7 +197,74 @@ function home() {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
-<!-- ROLU ACCOUNT SYSTEM -->
+
+<!-- ROLU LOGIN AND SIGNUP WINDOWS -->
+<div id="accountBox" style="display:none; position:fixed; inset:0; background:#000b; z-index:9999; align-items:center; justify-content:center;">
+  <div style="background:#20202b; color:white; padding:30px; border-radius:16px; width:320px; max-width:90%;">
+    <h2 id="accountTitle">Welcome to ROLU</h2>
+
+    <div id="usernameField">
+      <input id="accountUsername" placeholder="Username" style="display:block; width:100%; padding:12px; margin:10px 0; box-sizing:border-box;">
+    </div>
+
+    <input id="accountEmail" type="email" placeholder="Email" style="display:block; width:100%; padding:12px; margin:10px 0; box-sizing:border-box;">
+
+    <input id="accountPassword" type="password" placeholder="Password" style="display:block; width:100%; padding:12px; margin:10px 0; box-sizing:border-box;">
+
+    <button id="accountSubmit" onclick="submitAccount()" style="width:100%; padding:12px; margin-top:10px;">Continue</button>
+
+    <button onclick="closeAccount()" style="width:100%; padding:10px; margin-top:8px;">Close</button>
+
+    <p id="accountMessage"></p>
+  </div>
+</div>
+
+<script>
+let accountMode = "login";
+
+function showLogin() {
+  accountMode = "login";
+  document.getElementById("accountTitle").textContent = "Log In to ROLU";
+  document.getElementById("accountSubmit").textContent = "Log In";
+  document.getElementById("usernameField").style.display = "none";
+  document.getElementById("accountMessage").textContent = "";
+  document.getElementById("accountBox").style.display = "flex";
+}
+
+function showSignup() {
+  accountMode = "signup";
+  document.getElementById("accountTitle").textContent = "Join ROLU";
+  document.getElementById("accountSubmit").textContent = "Create Account";
+  document.getElementById("usernameField").style.display = "block";
+  document.getElementById("accountMessage").textContent = "";
+  document.getElementById("accountBox").style.display = "flex";
+}
+
+function closeAccount() {
+  document.getElementById("accountBox").style.display = "none";
+}
+
+async function submitAccount() {
+  const email = document.getElementById("accountEmail").value.trim();
+  const password = document.getElementById("accountPassword").value;
+  const username = document.getElementById("accountUsername").value.trim();
+  const message = document.getElementById("accountMessage");
+
+  if (accountMode === "signup") {
+    if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+      message.textContent = "Username must be 3–20 letters, numbers, or underscores.";
+      return;
+    }
+
+    const result = await roluSignUp(email, password, username);
+    if (result) message.textContent = result;
+  } else {
+    await roluLogin(email, password);
+  }
+}
+</script>
+
+  <!-- ROLU ACCOUNT SYSTEM -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
