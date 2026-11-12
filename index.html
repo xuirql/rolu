@@ -195,5 +195,65 @@ function home() {
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
+<!-- ROLU ACCOUNT SYSTEM -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://syjaroplcngxnndocgop.supabase.co";
+const SUPABASE_KEY = "sb_publishable_zbBW_GEFF_lKXr1Kyze2sA_HrIQ-FbE";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function roluSignUp(email, password, username) {
+  if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+    alert("Username must be 3–20 letters, numbers, or underscores.");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { username }
+    }
+  });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Account created! Check your email to confirm your account.");
+}
+
+async function roluLogin(email, password) {
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Welcome back to ROLU!");
+  location.reload();
+}
+
+async function roluLogout() {
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  location.reload();
+}
+</script>
 </body>
 </html>
