@@ -5,14 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROLU — Play. Create. Connect.</title>
+
 <style>
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #10121b;
   color: white;
 }
+
 header {
   height: 70px;
   background: #191c29;
@@ -22,7 +25,13 @@ header {
   padding: 0 5%;
   border-bottom: 1px solid #303448;
 }
-.logo { font-size: 29px; font-weight: 900; color: #a78bfa; }
+
+.logo {
+  font-size: 29px;
+  font-weight: 900;
+  color: #a78bfa;
+}
+
 .bricks {
   background: #302849;
   padding: 10px 16px;
@@ -30,12 +39,14 @@ header {
   color: #e3d5ff;
   font-weight: bold;
 }
+
 nav {
   display: flex;
   gap: 22px;
   padding: 16px 5%;
   background: #191c29;
 }
+
 nav button {
   color: #c5c8d8;
   background: none;
@@ -43,16 +54,32 @@ nav button {
   cursor: pointer;
   font-size: 15px;
 }
+
 nav button:hover { color: white; }
-main { max-width: 1200px; margin: auto; padding: 30px 5%; }
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 5%;
+}
+
 .hero {
   padding: 55px 35px;
   border-radius: 22px;
   background: linear-gradient(120deg,#50368d,#272e59,#1c5369);
   margin-bottom: 35px;
 }
-.hero h1 { font-size: clamp(35px,6vw,58px); margin: 0 0 12px; }
-.hero p { color: #e3e3fa; font-size: 17px; }
+
+.hero h1 {
+  font-size: clamp(35px,6vw,58px);
+  margin: 0 0 12px;
+}
+
+.hero p {
+  color: #e3e3fa;
+  font-size: 17px;
+}
+
 .primary {
   background: #a78bfa;
   color: #171326;
@@ -62,26 +89,36 @@ main { max-width: 1200px; margin: auto; padding: 30px 5%; }
   font-weight: bold;
   cursor: pointer;
 }
+
 h2 { margin-top: 32px; }
+
 .games {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
   gap: 18px;
 }
+
 .game {
   background: #1c2030;
   border: 1px solid #303448;
   border-radius: 16px;
   overflow: hidden;
 }
+
 .cover {
   height: 140px;
   display: grid;
   place-items: center;
   font-size: 52px;
 }
+
 .game-info { padding: 16px; }
-.game-info p { color: #aeb3c7; font-size: 13px; }
+
+.game-info p {
+  color: #aeb3c7;
+  font-size: 13px;
+}
+
 .play {
   background: #333b56;
   border: 0;
@@ -90,11 +127,13 @@ h2 { margin-top: 32px; }
   border-radius: 8px;
   cursor: pointer;
 }
+
 footer {
   text-align: center;
   padding: 35px;
   color: #858ba2;
 }
+
 #message {
   position: fixed;
   bottom: 20px;
@@ -104,15 +143,73 @@ footer {
   padding: 14px 22px;
   border-radius: 12px;
   display: none;
+  z-index: 10000;
 }
+
+#accountBox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000b;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-panel {
+  background: #20202b;
+  color: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 340px;
+  max-width: 90%;
+}
+
+.account-panel input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #45465c;
+  border-radius: 8px;
+  background: #141622;
+  color: white;
+}
+
+.account-panel button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 9px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#accountSubmit {
+  background: #a78bfa;
+  color: #171326;
+  font-weight: bold;
+}
+
+#accountMessage {
+  color: #e3d5ff;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
 @media(max-width:600px) {
   header { padding: 0 16px; }
-  nav { gap: 15px; overflow-x: auto; padding: 15px; }
+  nav {
+    gap: 15px;
+    overflow-x: auto;
+    padding: 15px;
+  }
   main { padding: 20px 16px; }
   .hero { padding: 35px 22px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -130,10 +227,12 @@ footer {
 </nav>
 
 <main id="content">
+
   <section class="hero">
     <h1>YOUR WORLD.<br>YOUR GAMES.</h1>
     <p>Discover games, meet players and create your own world.</p>
-    <button class="primary" onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">
+    <button class="primary"
+      onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">
       Explore games →
     </button>
   </section>
@@ -142,6 +241,7 @@ footer {
   <p style="color:#aeb3c7">Find something new to play.</p>
 
   <section class="games">
+
     <article class="game">
       <div class="cover" style="background:linear-gradient(135deg,#e9a45b,#d45b74)">🏝️</div>
       <div class="game-info">
@@ -177,53 +277,132 @@ footer {
         <button class="play" onclick="notify('Quest World is a demo game card!')">Play</button>
       </div>
     </article>
+
   </section>
 </main>
 
 <footer>© 2026 ROLU · Play. Create. Connect.</footer>
+
 <div id="message"></div>
 
-<script>
-function notify(text) {
-  const box = document.getElementById('message');
-  box.textContent = text;
-  box.style.display = 'block';
-  clearTimeout(window.noticeTimer);
-  window.noticeTimer = setTimeout(() => {
-    box.style.display = 'none';
-  }, 2500);
-}
-function home() {
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-</script>
+<!-- ACCOUNT WINDOW -->
 
-<!-- ROLU LOGIN AND SIGNUP WINDOWS -->
-<div id="accountBox" style="display:none; position:fixed; inset:0; background:#000b; z-index:9999; align-items:center; justify-content:center;">
-  <div style="background:#20202b; color:white; padding:30px; border-radius:16px; width:320px; max-width:90%;">
+<div id="accountBox">
+  <div class="account-panel">
+
     <h2 id="accountTitle">Welcome to ROLU</h2>
 
     <div id="usernameField">
-      <input id="accountUsername" placeholder="Username" style="display:block; width:100%; padding:12px; margin:10px 0; box-sizing:border-box;">
+      <input id="accountUsername" placeholder="Username" maxlength="20">
     </div>
 
-    <input id="accountEmail" type="email" placeholder="Email" style="display:block; width:100%; padding:12px; margin:10px 0; box-sizing:border-box;">
+    <input id="accountEmail" type="email" placeholder="Email">
 
-    <input id="accountPassword" type="password" placeholder="Password" style="display:block; width:100%; padding:12px; margin:10px 0; box-sizing:border-box;">
+    <input id="accountPassword" type="password" placeholder="Password">
 
-    <button id="accountSubmit" onclick="submitAccount()" style="width:100%; padding:12px; margin-top:10px;">Continue</button>
+    <button id="accountSubmit" onclick="submitAccount()">
+      Continue
+    </button>
 
-    <button onclick="closeAccount()" style="width:100%; padding:10px; margin-top:8px;">Close</button>
+    <button onclick="closeAccount()" style="background:#333b56;color:white;">
+      Close
+    </button>
 
     <p id="accountMessage"></p>
+
   </div>
 </div>
 
+<!-- SUPABASE LIBRARY -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+// ROLU GENERAL FUNCTIONS
+
+function notify(text) {
+  const box = document.getElementById("message");
+  box.textContent = text;
+  box.style.display = "block";
+
+  clearTimeout(window.noticeTimer);
+
+  window.noticeTimer = setTimeout(() => {
+    box.style.display = "none";
+  }, 2500);
+}
+
+function home() {
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+// SUPABASE CONNECTION
+
+const SUPABASE_URL = "https://syjaroplcngxnndocgop.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_zbBW_GEFF_lKXr1Kyze2sA_HrIQ-FbE";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+// ACCOUNT FUNCTIONS
+
+async function roluSignUp(email, password, username) {
+
+  if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+    throw new Error("Username must be 3–20 letters, numbers, or underscores.");
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: { username: username },
+      emailRedirectTo: "https://86vx2nzq3tgm-production-riqnfkm1.us-central1.suga.run/"
+    }
+  });
+
+  if (error) throw error;
+
+  return data;
+}
+
+
+async function roluLogin(email, password) {
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) throw error;
+
+  return data;
+}
+
+
+async function roluLogout() {
+
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) throw error;
+
+  location.reload();
+}
+
+
+// LOGIN AND SIGNUP WINDOWS
+
 let accountMode = "login";
 
 function showLogin() {
   accountMode = "login";
+
   document.getElementById("accountTitle").textContent = "Log In to ROLU";
   document.getElementById("accountSubmit").textContent = "Log In";
   document.getElementById("usernameField").style.display = "none";
@@ -233,6 +412,7 @@ function showLogin() {
 
 function showSignup() {
   accountMode = "signup";
+
   document.getElementById("accountTitle").textContent = "Join ROLU";
   document.getElementById("accountSubmit").textContent = "Create Account";
   document.getElementById("usernameField").style.display = "block";
@@ -244,86 +424,76 @@ function closeAccount() {
   document.getElementById("accountBox").style.display = "none";
 }
 
+
+// FORM SUBMISSION
+
 async function submitAccount() {
+
   const email = document.getElementById("accountEmail").value.trim();
   const password = document.getElementById("accountPassword").value;
   const username = document.getElementById("accountUsername").value.trim();
+
   const message = document.getElementById("accountMessage");
+  const submitButton = document.getElementById("accountSubmit");
 
-  if (accountMode === "signup") {
-    if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
-      message.textContent = "Username must be 3–20 letters, numbers, or underscores.";
-      return;
+  if (!email || !password) {
+    message.textContent = "Please enter your email and password.";
+    return;
+  }
+
+  if (password.length < 6) {
+    message.textContent = "Your password must be at least 6 characters.";
+    return;
+  }
+
+  if (accountMode === "signup" &&
+      !/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+    message.textContent = "Username must be 3–20 letters, numbers, or underscores.";
+    return;
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Please wait...";
+  message.textContent = "";
+
+  try {
+
+    if (accountMode === "signup") {
+      await roluSignUp(email, password, username);
+
+      message.textContent = "Account created! Check your email to confirm your account.";
+
+    } else {
+
+      await roluLogin(email, password);
+
+      message.textContent = "Welcome back to ROLU!";
+      location.reload();
     }
 
-    const result = await roluSignUp(email, password, username);
-    if (result) message.textContent = result;
-  } else {
-    await roluLogin(email, password);
+  } catch (error) {
+
+    message.textContent = error.message || "Something went wrong. Please try again.";
+
+  } finally {
+
+    submitButton.disabled = false;
+    submitButton.textContent =
+      accountMode === "signup" ? "Create Account" : "Log In";
+
   }
 }
+
+
+// RESTORE EXISTING SESSION
+
+supabaseClient.auth.getSession().then(({ data, error }) => {
+  if (error) {
+    console.error("Session error:", error.message);
+  }
+});
+
 </script>
 
-  <!-- ROLU ACCOUNT SYSTEM -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-const SUPABASE_URL = "https://syjaroplcngxnndocgop.supabase.co";
-const SUPABASE_KEY = "sb_publishable_zbBW_GEFF_lKXr1Kyze2sA_HrIQ-FbE";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-async function roluSignUp(email, password, username) {
-  if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
-    alert("Username must be 3–20 letters, numbers, or underscores.");
-    return;
-  }
-
-  const { data, error } = await supabaseClient.auth.signUp({
-    email,
-    password,
-    options: {
-      data: { username }
-      emailRedirectTo: "https://86vx2nzq3tgm-production-riqnfkm1.us-central1.suga.run/"
-    }
-  });
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-
-  alert("Account created! Check your email to confirm your account.");
-}
-
-async function roluLogin(email, password) {
-  const { data, error } = await supabaseClient.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-
-  alert("Welcome back to ROLU!");
-  location.reload();
-}
-
-async function roluLogout() {
-  const { error } = await supabaseClient.auth.signOut();
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-
-  location.reload();
-}
-</script>
 </body>
 </html>
